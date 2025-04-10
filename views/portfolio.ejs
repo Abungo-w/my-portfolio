@@ -5,7 +5,7 @@
   <script type="module" defer src="https://cdn.jsdelivr.net/gh/imananoosheh/github-contributions-fetch@latest/github_calendar_widget.js"></script>
 </head>
 <body>
-  <h1>Welcome, <%= user.displayName %>!</h1>
+  <h1>Welcome to <%= user.displayName %>'s portfolio!</h1>
 
   <!-- About Me Section -->
   <section id="about">
@@ -29,20 +29,7 @@
     <div id="calendar-component" username="<%= portfolio.githubUsername %>"></div>
   </section>
 
-  <!-- Edit Portfolio Form -->
-  <form action="/portfolio/edit" method="POST">
-    <h3>Edit Portfolio</h3>
-    <label for="about">About Me:</label>
-    <textarea id="about" name="about"><%= portfolio.about %></textarea><br>
-
-    <label for="projects">Projects (comma-separated):</label>
-    <input type="text" id="projects" name="projects" value="<%= portfolio.projects.join(', ') %>"><br>
-
-    <label for="githubUsername">GitHub Username:</label>
-    <input type="text" id="githubUsername" name="githubUsername" value="<%= portfolio.githubUsername %>"><br>
-
-    <button type="submit">Save Changes</button>
-  </form>
+  <a href="/portfolio/edit">Edit Portfolio</a>
   <a href="/logout">Logout</a>
 </body>
 </html>

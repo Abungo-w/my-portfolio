@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Portfolio</title>
+</head>
+<body>
+  <h1>Edit Portfolio for <%= user.displayName %></h1>
+
+  <form action="/portfolio/edit" method="POST">
+    <h3>Edit Portfolio</h3>
+    <label for="about">About Me:</label>
+    <textarea id="about" name="about"><%= portfolio.about %></textarea><br>
+
+    <label for="projects">Projects (comma-separated):</label>
+    <input type="text" id="projects" name="projects" value="<%= portfolio.projects.join(', ') %>"><br>
+
+    <label for="githubUsername">GitHub Username:</label>
+    <input type="text" id="githubUsername" name="githubUsername" value="<%= portfolio.githubUsername %>"><br>
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <a href="/portfolio">Back to Portfolio</a>
+</body>
+</html>

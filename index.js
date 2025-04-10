@@ -75,9 +75,34 @@ app.get('/portfolio', ensureAuthenticated, async (req, res) => {
   }
 });
 
-app.get('/logout', (req, res) => {
-  req.logout(() => {
-    res.redirect('/');
+app.get('/portfolio/edit', ensureAuthenticated, async (req, res) => {
+  try {
+    // Fetch the user's portfolio from the database
+    const portfolio = await Portfolio.findOne({ userId: req.user.id });
+
+    // Render the edit portfolio view with the fetched data
+    res.render('edit', {
+      user: req.user,
+      portfolio: portfolio || { about: '', projects: [], githubUsername: '' },
+    });
+  } catch (err) {
+    console.error('Error fetching portfolio for editing:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/logout', (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Error destroying session:', err);
+      }
+      res.clearCookie('connect.sid'); // Clear the session cookie
+      res.redirect('/'); // Redirect to the login page
+    });
   });
 });
 
