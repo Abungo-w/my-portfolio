@@ -23,7 +23,6 @@ passport.use(new GoogleStrategy({
   clientSecret: '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',
   callbackURL: '/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
-  // Here, you can save the user profile to your database if needed
   return done(null, profile);
 }));
 
