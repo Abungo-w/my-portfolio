@@ -1,21 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <script type="module" 
   defer src="https://cdn.jsdelivr.net/gh/imananoosheh/github-contributions-fetch@latest/github_calendar_widget.js"></script>
 </head>
 <body>
-  <h1>Welcome to <%= user.displayName %>'s portfolio!</h1>
+  <div class="hero">
+    <nav>
+      <div class="logo">MyPortfolio</div>
+      <ul class="nav-links">
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#github-contributions">GitHub Contributions</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="/portfolio/edit" class="google-btn">Edit Portfolio</a>
+        <a href="/logout" class="google-btn">Logout</a>
+      </div>
+    </nav>
 
-  <!-- About Me Section -->
-  <section id="about">
+    <div class="container">
+      <h1>Welcome to <%= user.displayName %>'s portfolio!</h1>
+    </div>
+  </div>
+
+  <section id="about" class="info-section">
     <h2>About Me</h2>
     <p><%= portfolio.about || 'No information provided yet.' %></p>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects">
+  <section id="projects" class="info-section alt">
     <h2>Projects</h2>
     <ul>
       <% portfolio.projects.forEach(project => { %>
@@ -24,13 +43,13 @@
     </ul>
   </section>
 
-  <!-- GitHub Contributions Section -->
-  <section id="github-contributions">
+  <section id="github-contributions" class="info-section">
     <h2>GitHub Contributions</h2>
     <div id="calendar-component" username="<%= portfolio.githubUsername %>"></div>
   </section>
 
-  <a href="/portfolio/edit">Edit Portfolio</a>
-  <a href="/logout">Logout</a>
+  <footer>
+    <p>&copy; 2025 MyPortfolio. All rights reserved.</p>
+  </footer>
 </body>
 </html>

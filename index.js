@@ -17,6 +17,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static('public'));
 
 passport.use(new GoogleStrategy({
   clientID: '1017988010282-85jc10h4ma3qmf0p04dcjet9henalngu.apps.googleusercontent.com',
@@ -44,7 +45,7 @@ function ensureAuthenticated(req, res, next) {
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  res.render('login', { user: req.user });
+  res.render('index', { user: req.user });
 });
 
 app.get('/auth/google',

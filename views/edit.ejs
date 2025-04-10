@@ -1,25 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Portfolio</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Edit Portfolio for <%= user.displayName %></h1>
+  <div class="hero">
+    <nav>
+      <div class="logo">MyPortfolio</div>
+      <ul>
+        <li><a href="/portfolio">Back to Portfolio</a></li>
+      </ul>
+    </nav>
 
-  <form action="/portfolio/edit" method="POST">
-    <h3>Edit Portfolio</h3>
-    <label for="about">About Me:</label>
-    <textarea id="about" name="about"><%= portfolio.about %></textarea><br>
+    <div class="container">
+      <h1>Edit Portfolio for <%= user.displayName %></h1>
+      <form action="/portfolio/edit" method="POST" class="form">
+        <div class="form-group">
+          <label for="about">About Me:</label>
+          <textarea id="about" name="about" class="form-control"><%= portfolio.about %></textarea>
+        </div>
 
-    <label for="projects">Projects (comma-separated):</label>
-    <input type="text" id="projects" name="projects" value="<%= portfolio.projects.join(', ') %>"><br>
+        <div class="form-group">
+          <label for="projects">Projects (comma-separated):</label>
+          <input type="text" id="projects" name="projects" class="form-control" value="<%= portfolio.projects.join(', ') %>">
+        </div>
 
-    <label for="githubUsername">GitHub Username:</label>
-    <input type="text" id="githubUsername" name="githubUsername" value="<%= portfolio.githubUsername %>"><br>
+        <div class="form-group">
+          <label for="githubUsername">GitHub Username:</label>
+          <input type="text" id="githubUsername" name="githubUsername" class="form-control" value="<%= portfolio.githubUsername %>">
+        </div>
 
-    <button type="submit">Save Changes</button>
-  </form>
+        <button type="submit" class="google-btn">Save Changes</button>
+      </form>
+    </div>
+  </div>
 
-  <a href="/portfolio">Back to Portfolio</a>
+  <footer>
+    <p>&copy; 2025 MyPortfolio. All rights reserved.</p>
+  </footer>
 </body>
 </html>
