@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio</title>
+  <script type="module" defer src="https://cdn.jsdelivr.net/gh/imananoosheh/github-contributions-fetch@latest/github_calendar_widget.js"></script>
+</head>
+<body>
+  <h1>Welcome, <%= user.displayName %>!</h1>
+
+  <!-- About Me Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p><%= portfolio.about || 'No information provided yet.' %></p>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <% portfolio.projects.forEach(project => { %>
+        <li><%= project %></li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <!-- GitHub Contributions Section -->
+  <section id="github-contributions">
+    <h2>GitHub Contributions</h2>
+    <div id="calendar-component" username="<%= portfolio.githubUsername %>"></div>
+  </section>
+
+  <!-- Edit Portfolio Form -->
+  <form action="/portfolio/edit" method="POST">
+    <h3>Edit Portfolio</h3>
+    <label for="about">About Me:</label>
+    <textarea id="about" name="about"><%= portfolio.about %></textarea><br>
+
+    <label for="projects">Projects (comma-separated):</label>
+    <input type="text" id="projects" name="projects" value="<%= portfolio.projects.join(', ') %>"><br>
+
+    <label for="githubUsername">GitHub Username:</label>
+    <input type="text" id="githubUsername" name="githubUsername" value="<%= portfolio.githubUsername %>"><br>
+
+    <button type="submit">Save Changes</button>
+  </form>
+  <a href="/logout">Logout</a>
+</body>
+</html>
